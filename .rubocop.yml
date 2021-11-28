@@ -1,0 +1,72 @@
+AllCops:
+  Exclude:
+    - "db/*.rb"
+    - "config/environments/*.rb"
+    - "config/*.rb"
+    - "script/**/*"
+    - "bin/*"
+
+Layout/LineLength:
+  Max: 100
+  IgnoredPatterns: ["^ *# "]
+  Exclude:
+    - "**/*.yml"
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Layout/SpaceInsideBlockBraces:
+  EnforcedStyle: no_space
+  SpaceBeforeBlockParameters: false
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Style/MethodDefParentheses:
+  EnforcedStyle: require_no_parentheses_except_multiline
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    "%i": "[]"
+    "%I": "[]"
+    "%r": "{}"
+    "%w": "[]"
+    "%W": "[]"
+
+Style/HashAsLastArrayItem:
+  EnforcedStyle: no_braces
+
+Style/Lambda:
+  Exclude:
+    - config/deploy.rb
+    - config/deploy/*.rb
+
+Style/Documentation:
+  Enabled: false
+
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+  Exclude:
+    - lib/capistrano/**/*.rake
+    - config/initializers/searchkick.rb
+
+Layout/SpaceBeforeBlockBraces:
+  EnforcedStyle: no_space
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Metrics/ClassLength:
+  Max: 400
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - "db/migrate/*.rb"
+
+Metrics/AbcSize:
+  Enabled: false
