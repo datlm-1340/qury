@@ -1,6 +1,5 @@
 class SessionsController < Devise::SessionsController
   respond_to :json
-  before_action :skip_session
 
   private
 
@@ -16,9 +15,5 @@ class SessionsController < Devise::SessionsController
 
   def current_token
     request.env["warden-jwt_auth.token"]
-  end
-
-  def skip_session
-    request.session_options[:skip] = true
   end
 end

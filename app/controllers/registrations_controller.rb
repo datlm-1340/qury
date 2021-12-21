@@ -1,15 +1,26 @@
 class RegistrationsController < Devise::SessionsController
-  private
+  respond_to :json
 
-  def respond_with resource, _opts = {}
+  def create
+    user = User.new(registration_params)
+    user.save!
+
     render json: {
-      id: resource.id,
+      status: :ok,
+      email: user.email,
       access_token: current_token
+    }
+  rescue StandardError => e
+    render json: {
+      status: :failed,
+      errors: e.record.error_detail
     }
   end
 
-  def respond_to_on_destroy
-    head 200
+  private
+
+  def registration_params
+    params.require(:registration).permit(User::REGISTRATION_PARAMS)
   end
 
   def current_token

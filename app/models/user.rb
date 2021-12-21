@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  include User::Const
+  include User::Validation
+
   devise :database_authenticatable,
          :registerable,
          :recoverable,
