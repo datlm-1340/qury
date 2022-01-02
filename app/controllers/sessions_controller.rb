@@ -16,3 +16,5 @@ class SessionsController < Devise::SessionsController
     request.env["warden-jwt_auth.token"]
   end
 end
+
+#test
