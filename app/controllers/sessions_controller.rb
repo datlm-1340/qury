@@ -2,7 +2,6 @@ class SessionsController < Devise::SessionsController
   respond_to :json
 
   private
-
   def respond_with _resource, _opts = {}
     render json: {
       access_token: current_token
@@ -17,3 +16,5 @@ class SessionsController < Devise::SessionsController
     request.env["warden-jwt_auth.token"]
   end
 end
+
+#test
