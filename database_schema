@@ -1,0 +1,83 @@
+
+Table users {
+  id int [pk, increment]
+  email varchar [not null, unique]
+  password varchar [not null]
+  created_at timestamp
+}
+
+Table projects {
+  id int [pk, increment]
+  title string
+  description text
+  creator_id int [ref: > users.id]
+}
+
+Table groups {
+  id int [pk, increment]
+  title string
+  description text
+  project_id int [ref: > projects.id]
+  creator_id int [ref: > users.id]
+}
+
+Table topics {
+  id int [pk, increment]
+  title varchar
+  content text
+  priority int
+  start_date datetime
+  due_date datetime
+  group_id int [ref: > groups.id]
+  category_id int [ref: > categories.id]
+  creator_id int [ref: > users.id]
+  assignee_id int [ref: > users.id]
+  status_id int [ref: > status.id]
+}
+
+Table status {
+  id int pk
+  name string
+  project_id int [ref: > projects.id]
+}
+
+Table categories {
+  id int pk
+  name string
+  project_id int [ref: > projects.id]
+}
+
+Table custom_fields {
+  id int pk
+  name string
+  project_id int [ref: > projects.id]
+}
+
+Table custom_field_options {
+  id int pk
+  name string
+  is_default boolean
+  custom_field_id int [ref: > custom_fields.id]
+}
+
+Table comments {
+  id int [pk, increment]
+  content text
+  topic_id int [ref: > topics.id]
+  user_id int [ref: > users.id]
+}
+
+Table bookmarks {
+  id int [pk, increment]
+  content text
+  topic_id int [ref: > topics.id]
+  user_id int [ref: > users.id]
+}
+
+Table attachments {
+  id int [pk, increment]
+  url varchar
+  parent_id int
+  parent_type string
+  uploader_id int [ref: > users.id]
+}
